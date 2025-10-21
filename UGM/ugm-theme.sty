@@ -1,5 +1,5 @@
 % =========================================================
-% Custom Beamer Theme — mytheme.sty
+% Custom Beamer Theme — ugm-theme.sty
 % =========================================================
 
 \ProvidesPackage{ugm-theme}
@@ -10,6 +10,7 @@
 \usepackage{graphics}
 \usepackage[utf8]{inputenc}
 \usepackage{microtype}
+\usepackage{ragged2e}
 \ifdefined\directlua
   \usepackage{fontspec}
 \else
@@ -18,7 +19,7 @@
 \fi
 
 \newcommand{\idnum}[1]{\def\insertidnum{#1}}
-\newcommand{\spaced}[1]{{\addfontfeatures{LetterSpace=15}#1}}
+
 
 % === Font Styles ===
 \setbeamerfont{title}{series=\bfseries,size=\Huge}
@@ -37,7 +38,7 @@
 \setbeamercolor{whitebox}{bg=white, fg=black}
 
 % UGM Color Palette
-\definecolor{ugmBlue}{cmyk}{1, 0.35, 0, 0.60} % fixed syntax
+\definecolor{ugmBlue}{cmyk}{1, 0.35, 0, 0.60}
 \definecolor{ugmGold}{cmyk}{0, 0.18, 1, 0}
 \setbeamercolor{ugmBlue}{bg=ugmBlue}
 \setbeamercolor{ugmGold}{bg=ugmGold}
@@ -79,7 +80,7 @@
     \end{beamercolorbox}%
 
     \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.5ex,leftskip=0.5em,rightskip=0em]{ugmBlue}%
-      \color{white}\centering\tiny{\textbf{\hspace{0.5cm}
+      \centering\color{white}\tiny{\textbf{\hspace{0.5cm}
         L\kern0.2em O\kern0.2em C\kern0.2em A\kern0.2em L\kern0.2em L\kern0.2em Y\kern0.4em R\kern0.2em O\kern0.2em O\kern0.2em T\kern0.2em E\kern0.2em D,\kern0.4em G\kern0.2em L\kern0.2em O\kern0.2em B\kern0.2em A\kern0.2em L\kern0.2em L\kern0.2em Y\kern0.4em  R\kern0.2em E\kern0.2em S\kern0.2em P\kern0.2em E\kern0.2em C\kern0.2em T\kern0.2em E\kern0.2em D}}
     \end{beamercolorbox}%
 
@@ -138,7 +139,6 @@
 }
 
 % === Frame Title Template ===
-
 \setbeamertemplate{frametitle}{
     \nointerlineskip
     \vspace{1.2cm}
@@ -157,36 +157,43 @@
   \raisebox{0.5pt}{\usebeamercolor[fg]{title}$\blacktriangleright$}\hspace{0.5em}%
   \inserttocsection\par
 }
-
-
-% === Thank You Page === 
-\AtEndDocument{
+% === Section Header ===
+\AtBeginSection[]{
     \begin{frame}
-        \hbox to \paperwidth{
-          \hfill
-          \begin{beamercolorbox}[wd=4cm,ht=2cm,dp=1ex,rightskip=0.5cm]{whitebox}\end{beamercolorbox}
-        }
-
-
-        \begin{columns}[t]
-          \begin{column}{0.5\paperwidth}
-            \begin{center}
-              \includegraphics[height=1.7cm]{resources/logo}\\[1cm]
-                \textit{“Ini adalah text untuk kutipan atau qoutes yang menggunakan font gama-sans light italic”}
-                \vfil
-            \end{center}
-            
-            
-          \end{column}
-          \begin{column}{0.5\paperwidth}
-            \vspace*{-2em}
-            \scalebox{-1}[1]{\includegraphics[height=0.6\paperheight]{resources/balairung.png}}
-          \end{column}
-        \end{columns}
+        \tableofcontents[currentsection] 
     \end{frame}
 }
 
-% === TikZ Defaults ===
-\tikzset{every picture/.append style={remember picture=false}}
+% === End Slide === 
+\AtEndDocument{
+\begin{frame}
+  \hbox to \paperwidth{
+    \hfill
+    \begin{beamercolorbox}[wd=4cm,ht=2cm,dp=1ex,rightskip=0.5cm]{whitebox}\end{beamercolorbox}
+  }
 
-% === End of Theme ===
+  \begin{columns}[t]
+    \begin{column}{0.4\paperwidth}
+      \vspace*{-2cm}
+      \begin{flushright}
+        \includegraphics[height=1.7cm]{resources/logo}
+      \end{flushright}
+
+      \vspace{1cm}
+
+      \begin{flushleft} 
+        \begin{minipage}{0.9\linewidth} 
+          \justifying 
+          \textit{“Ini adalah text untuk kutipan atau qoutes yang menggunakan font gama-sans light italic”}
+        \end{minipage}
+      \end{flushleft}
+    \end{column}
+
+    \begin{column}{0.5\paperwidth}
+      \vspace*{-2em}
+      \scalebox{-1}[1]{\includegraphics[height=0.6\paperheight]{resources/balairung.png}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+}
